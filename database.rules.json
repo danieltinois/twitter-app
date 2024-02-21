@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": "now < 1711076400000",  // 2024-3-22
+    ".write": "now < 1711076400000",  // 2024-3-22
+    "tweets": {
+      "$tweetId": {
+        ".write": "data.child('user').val() === auth.token.email"
+      }
+    }
+  }
+}
