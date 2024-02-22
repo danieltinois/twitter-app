@@ -265,12 +265,18 @@ export const Home = () => {
               >
                 <h1 className="text-xl pt-4 pl-2 mb-7">{tweet.text}</h1>
                 {tweet.imageURL && (
-                  <img
-                    src={tweet.imageURL}
-                    alt="Tweet Image"
-                    className="mb-4 mx-auto"
-                    style={{ maxWidth: "70%", display: "block" }}
-                  />
+                  <a
+                    href={tweet.imageURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={tweet.imageURL}
+                      alt="Tweet Image"
+                      className="mb-4 mx-auto cursor-pointer"
+                      style={{ maxWidth: "70%", display: "block" }}
+                    />
+                  </a>
                 )}
                 <div className="flex justify-between items-center mt-auto pb-3">
                   <span className="text-sky-500 pl-2">{tweet.user}</span>
