@@ -26,7 +26,8 @@ export const Home = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [imagePreviewURL, setImagePreviewURL] = useState(null); // Adicionando estado para pré-visualização da imagem
+  const [imagePreviewURL, setImagePreviewURL] = useState(null);
+  const [isImageClickable, setIsImageClickable] = useState(false);
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [tweets, setTweets] = useState([]);
@@ -125,7 +126,7 @@ export const Home = () => {
     <App>
       <header
         className={classNames(
-          "flex justify-between items-center py-3 px-6 border-b border-gray-200",
+          "flex justify-between items-center py-4 px-6 border-b border-gray-200",
           {
             "bg-gray-800": isDarkTheme,
             "border-gray-700": isDarkTheme,
@@ -265,18 +266,32 @@ export const Home = () => {
               >
                 <h1 className="text-xl pt-4 pl-2 mb-7">{tweet.text}</h1>
                 {tweet.imageURL && (
-                  <a
-                    href={tweet.imageURL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={tweet.imageURL}
-                      alt="Tweet Image"
-                      className="mb-4 mx-auto cursor-pointer"
-                      style={{ maxWidth: "70%", display: "block" }}
-                    />
-                  </a>
+                  <div>
+                    <a
+                      href={tweet.imageURL}
+                      onClick={(e) => {
+                        if (!e.target.classList.contains("image-clickable")) {
+                          e.preventDefault();
+                        }
+                      }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classNames("block mx-auto", {
+                        "cursor-auto": !isImageClickable,
+                        "cursor-pointer": isImageClickable,
+                      })}
+                    >
+                      <img
+                        src={tweet.imageURL}
+                        alt="Tweet Image"
+                        className={classNames("mb-4 mx-auto image-clickable", {
+                          "cursor-pointer": !isImageClickable,
+                          "cursor-auto": isImageClickable,
+                        })}
+                        style={{ maxWidth: "70%", display: "block" }}
+                      />
+                    </a>
+                  </div>
                 )}
                 <div className="flex justify-between items-center mt-auto pb-3">
                   <span className="text-sky-500 pl-2">{tweet.user}</span>
