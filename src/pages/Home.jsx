@@ -15,7 +15,6 @@ export const Home = () => {
   const [tweets, setTweets] = useState([]);
   const textLimit = 255;
   const navigate = useNavigate();
-
   const database = getDatabase();
 
   useEffect(() => {
@@ -98,13 +97,15 @@ export const Home = () => {
         )}
       >
         <div className="flex items-center">
-          <h1
-            className="text-xl font-bold pr-4 text-sky-500"
-          >
+          <h1 className="text-xl font-bold pr-4 text-sky-500">
             Simple Twitter
           </h1>
           <button onClick={toggleTheme}>
-            {isDarkTheme ? <MdLightMode color="#FFFFCC" size={20} /> : <MdDarkMode color="#065F96" size={20} />}
+            {isDarkTheme ? (
+              <MdLightMode color="#FFFFCC" size={20} />
+            ) : (
+              <MdDarkMode color="#065F96" size={20} />
+            )}
           </button>
         </div>
         <div className="flex items-center space-x-4">
