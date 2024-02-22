@@ -221,7 +221,7 @@ export const Home = () => {
                 </div>
               )}
             </div>
-            <div className="flex justify-between pr-2">
+            <div className="flex justify-between pl-2">
               <span className="text-emerald-500">
                 Você ainda pode digitar {textLimit - text.length} caracteres
               </span>
