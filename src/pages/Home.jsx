@@ -163,7 +163,7 @@ export const Home = () => {
           "bg-gray-900": isDarkTheme,
         })}
       >
-        <div className="m-16 w-2/3 ">
+        <div className="m-16 w-3/6 ">
           <div className={classNames("App", { dark: isDarkTheme })}>
             <label
               className={classNames("block mb-2 pl-2", {
