@@ -10,10 +10,11 @@ import { SignIn } from "./SignIn";
 export const Pages = () => (
   <Router>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<Home />}>
+        <Route path="sign-up" element={<SignUp />} />
+        <Route path="sign-in" element={<SignIn />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   </Router>
 );

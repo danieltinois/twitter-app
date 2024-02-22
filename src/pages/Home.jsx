@@ -120,11 +120,9 @@ export const Home = () => {
             <div
               key={tweet.id}
               className={classNames(
-                "w-full bg-white h-auto mt-8 mb-8 pl-4 pr-4 flex flex-col rounded-md shadow-md",
-                {
-                  "break-all": true,
-                }
+                "w-full bg-white mt-8 mb-8 pl-4 pr-4 flex flex-col rounded-md shadow-md"
               )}
+              style={{ maxWidth: "100%" }} // Defina o maxWidth conforme necessário
             >
               <h1 className="text-lg pt-5 mb-7">{tweet.text}</h1>
 
