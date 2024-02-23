@@ -23,7 +23,6 @@ import { FaImage } from "react-icons/fa";
 import { BsX } from "react-icons/bs";
 
 export const Home = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreviewURL, setImagePreviewURL] = useState(null);
@@ -111,10 +110,6 @@ export const Home = () => {
     }
   }
 
-  function toggleTheme() {
-    setIsDarkTheme((prevTheme) => !prevTheme);
-  }
-
   function handleCancelImage() {
     setImage(null);
     setImagePreviewURL(null);
@@ -124,32 +119,14 @@ export const Home = () => {
 
   return (
     <App>
-      <header
-        className={classNames(
-          "flex justify-between items-center py-4 px-6 border-b border-gray-200",
-          {
-            "bg-gray-800": isDarkTheme,
-            "border-gray-700": isDarkTheme,
-            "shadow-lg": isDarkTheme,
-          }
-        )}
-      >
+      <header className="flex justify-between items-center py-4 px-6 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center">
           <h1 className="text-xl font-bold pr-4 text-sky-500">
             Simple Twitter
           </h1>
-          <button onClick={toggleTheme}>
-            {isDarkTheme ? (
-              <MdLightMode color="white" size={20} />
-            ) : (
-              <MdDarkMode color="#0A2540" size={20} />
-            )}
-          </button>
         </div>
         <div className="flex items-center space-x-4">
-          <span className={classNames("", { "text-white": isDarkTheme })}>
-            {email}
-          </span>
+          <span className="dark:text-white">{email}</span>
           <button
             onClick={handleSignOut}
             className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
@@ -158,36 +135,15 @@ export const Home = () => {
           </button>
         </div>
       </header>
-      <main
-        className={classNames("flex justify-center items-center", {
-          "bg-gray-100": !isDarkTheme,
-          "bg-gray-900": isDarkTheme,
-        })}
-      >
-        <div className="m-16 w-3/6 ">
-          <div className={classNames("App", { dark: isDarkTheme })}>
-            <label
-              className={classNames("block mb-2 pl-2", {
-                "text-white": isDarkTheme,
-              })}
-            >
+      <main className="flex justify-center items-center bg-gray-100 dark:bg-gray-900 ">
+        <div className="m-16 w-3/5">
+          <div className="App">
+            <label className="block mb-2 pl-2 dark:text-white">
               Faça um tweet agora mesmo
             </label>
-            <div
-              className={classNames(
-                "w-full flex flex-col justify-center items-center rounded-lg overflow-hidden mb-4 shadow-md",
-                {
-                  "bg-gray-800 text-white": isDarkTheme,
-                  "shadow-lg": isDarkTheme,
-                  "bg-white": !isDarkTheme,
-                }
-              )}
-            >
+            <div className="w-full flex flex-col justify-center items-center rounded-lg overflow-hidden mb-4 shadow-md dark:bg-gray-800 ">
               <textarea
-                className={classNames("w-full h-28 px-5 py-4 outline-none", {
-                  "border-gray-700": isDarkTheme,
-                  "bg-gray-800 text-white": isDarkTheme,
-                })}
+                className="w-full h-28 px-5 py-4 outline-none dark:bg-gray-800 dark:text-white"
                 value={text}
                 onChange={handleChangeCaracteres}
                 maxLength="255"
@@ -196,11 +152,7 @@ export const Home = () => {
               />
               {imagePreviewURL && (
                 // Adicionando uma linha separadora
-                <hr
-                  className={classNames("w-full border-t border-gray-300", {
-                    "border-gray-700": isDarkTheme,
-                  })}
-                />
+                <hr className="w-full border-t border-gray-300 dark:border-gray-700" />
               )}
               {imagePreviewURL && (
                 <div className="flex flex-col items-center relative mt-5 ">
@@ -208,8 +160,8 @@ export const Home = () => {
                     className="flex items-center absolute -top-5 -left-2 p-2"
                     onClick={handleCancelImage}
                   >
-                    <BsX size={30} />
-                    <span className="ml-1 text-gray-500 text-xs">
+                    <BsX size={30} className="dark:text-white" />
+                    <span className=" text-gray-500 text-xs dark:text-gray-400">
                       Pressione o X para remover a imagem
                     </span>
                   </button>
@@ -255,16 +207,12 @@ export const Home = () => {
             {tweets.map((tweet) => (
               <div
                 key={tweet.id}
-                className={classNames(
-                  "w-full mt-8 mb-8 pl-4 pr-4 flex flex-col rounded-md",
-                  {
-                    "bg-white shadow-md": !isDarkTheme,
-                    "bg-gray-800 text-white shadow-lg": isDarkTheme,
-                  }
-                )}
+                className="w-full mt-8 mb-8 pl-4 pr-4 flex flex-col rounded-md shadow-md bg-white dark:bg-gray-800"
                 style={{ maxWidth: "100%" }}
               >
-                <h1 className="text-xl pt-4 pl-2 mb-7">{tweet.text}</h1>
+                <h1 className="text-xl pt-4 pl-2 mb-7 dark:text-white">
+                  {tweet.text}
+                </h1>
                 {tweet.imageURL && (
                   <div>
                     <a
@@ -295,7 +243,7 @@ export const Home = () => {
                 )}
                 <div className="flex justify-between items-center mt-auto pb-3">
                   <span className="text-sky-500 pl-2">{tweet.user}</span>
-                  <span className="opacity-40 pr-4 text-sm">
+                  <span className="opacity-40 pr-4 text-sm dark:text-white">
                     {new Date(tweet.timestamp).toLocaleString("pt-BR", {
                       hour12: false,
                     })}

@@ -8,9 +8,12 @@ import classNames from "classnames";
 
 import { App } from "../layouts/App";
 
+import { GrFormViewHide, GrFormView } from "react-icons/gr";
+
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidePassWord, setHidePassword] = useState("password");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -20,6 +23,14 @@ export const SignIn = () => {
   const [isErrorVisible, setIsErrorVisible] = useState(false);
 
   const navigate = useNavigate();
+
+  function handleHidePassword() {
+    if (hidePassWord === "password") {
+      setHidePassword("text");
+    } else {
+      setHidePassword("password");
+    }
+  }
 
   function handleSignIn(e) {
     e.preventDefault();
@@ -75,39 +86,42 @@ export const SignIn = () => {
       >
         {errorMessage}
       </div>
-      <div className="flex items-center justify-center w-screen h-screen flex-col">
+      <div className="flex items-center justify-center w-screen h-screen flex-col dark:bg-gray-900">
         <h1 className="font-sans text-3xl text-sky-500 pb-6">Aluritter</h1>
-        <form className="flex flex-col w-full lg:w-1/4 md:w-1/3 sm:w-1/2 px-10 sm:px-0">
+        <div className="flex flex-col w-full lg:w-1/4 md:w-1/3 sm:w-1/2 px-10 sm:px-0">
           <div>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={classNames(
-                "w-full p-2 border border-slate-400 rounded text-gray-500 placeholder-slate-400",
+                "w-full p-2 border border-slate-400 rounded text-gray-500 placeholder-slate-400 dark:bg-gray-800 dark:border-slate-700 dark:text-white ",
                 { "border-red-500": error } // Adiciona a classe de erro se houver um erro de autenticação
               )}
               placeholder="email@exemplo.com"
               type="email"
-              required
-              maxLength={255}
-              minLength={5}
             />
             {emailError && <p className="text-red-500 pt-1">{emailError}</p>}
           </div>
           <div className="mt-2.5">
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={classNames(
-                "w-full p-2 border border-slate-400 rounded text-gray-500 placeholder-slate-400",
-                { "border-red-500": error } // Adiciona a classe de erro se houver um erro de validação
-              )}
-              placeholder="Senha"
-              type="password"
-              required
-              maxLength={255}
-              minLength={8}
-            />
+            <div className="flex w-full mt-1 focus-within:border-black border border-slate-400 rounded text-gray-500 placeholder-slate-400 dark:bg-gray-800 dark:border-slate-700 dark:text-white dark:focus-within:border-white ">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={classNames(
+                  "w-full p-2 border-none bg-transparent outline-none ",
+                  { "border-red-500": error } // Adiciona a classe de erro se houver um erro de validação
+                )}
+                placeholder="Senha"
+                type={hidePassWord}
+              />
+              <button className="mr-2" onClick={handleHidePassword}>
+                {hidePassWord !== "text" ? (
+                  <GrFormViewHide size={30} color="#94A3B8" />
+                ) : (
+                  <GrFormView size={30} color="#94A3B8" />
+                )}
+              </button>
+            </div>
             {passwordError && (
               <p className="text-red-500 pt-1">{passwordError}</p>
             )}
@@ -119,7 +133,7 @@ export const SignIn = () => {
           >
             Acessar plataforma
           </button>
-        </form>
+        </div>
         <div className="mt-2">
           <span className="text-sm mt-2 text-gray-500">
             Não possui uma conta?{" "}

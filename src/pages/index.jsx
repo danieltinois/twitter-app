@@ -17,15 +17,8 @@ export const Pages = () => {
       path: "sign-up",
       element: <SignUp />,
     },
-    {
-      path: "sign-in",
-      element: <SignIn />,
-    },
-    {
-      path: "*",
-      element: <NotFound />,
-    },
+    { path: "sign-in", element: <SignIn /> },
+    { path: "*", element: <NotFound /> },
   ]);
-
   return <RouterProvider router={router} />;
 };
