@@ -15,9 +15,13 @@ uma plataforma simples similar ao Twitter, construída do zero!
 ### 📄 O que foi usado:
 
 -✅ React.js com Vite
+<br/>
 -✅ Tailwind CSS
+<br/>
 -✅ Firebase alimenta
+<br/>
 -✅ GitHub Actions o backend
+<br/>
 -✅ Firebase Hosting
 
 ### 🛠 Mão na massa:
