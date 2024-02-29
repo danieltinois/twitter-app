@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="Twitter-app" title="Twitter-app" src="https://ibb.co/7r5psxf" width="100%" />
+<img alt="Twitter-app" title="Twitter-app" src="https://i.ibb.co/zPY2qWM/clideo-editor-6a0fead19e3142609af6375a8969d4ac.gif" width="100%" />
 </p>
 
 <br/>
